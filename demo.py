@@ -167,7 +167,7 @@ st.markdown("<p style='color:white;text-align:center'>Ask any question and get A
 st.markdown("""
 <style>
 /* Targets the input element within the stTextInput container */
-.stTextInput input[aria-label="Black and White Input"] {
+.stTextInput input[aria-label="Type Your Question here"] {
     background-color: #000000; /* Black background */
     color: #FFFFFF;            /* White text color */
     border: 1px solid #FFFFFF; /* Optional: adds a white border */
@@ -196,6 +196,7 @@ if st.button("Ask"):
                 st.error(f"API Error {e.response.status_code}: {e}")
             except Exception as e:
                 st.error(f"Error: {e}")
+
 
 
 
