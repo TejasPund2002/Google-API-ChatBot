@@ -162,53 +162,7 @@ async def google_search(query: str):
 st.markdown("<h1 style='color:white;text-align:center'>🤖 G-ChatBot</h1>", unsafe_allow_html=True)
 st.markdown("<p style='color:white;text-align:center'>Ask any question and get AI-powered search results instantly!</p>", unsafe_allow_html=True)
 
-# ----- CSS Styling for Cards, Buttons, and Input -----
-
-st.markdown(
-""" <style>
-/* Chat Cards */
-.chat-card {
-background: rgba(0, 0, 50, 0.75);
-color: white;
-border-radius: 12px;
-padding: 15px;
-margin-bottom: 15px;
-box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
-transition: transform 0.2s;
-}
-.chat-card:hover {
-transform: scale(1.02);
-box-shadow: 4px 4px 15px rgba(0,0,0,0.6);
-}
-/* Button Styling */
-.stButton>button {
-background-color: #0b3d91;
-color: white;
-font-weight: bold;
-height: 45px;
-width: 100%;
-border-radius: 10px;
-border: none;
-transition: background 0.3s;
-}
-.stButton>button:hover {
-background-color: #1761c5;
-cursor: pointer;
-}
-/* Input Box Styling (white text) */
-div[data-baseweb="input"] > input {
-border-radius: 10px;
-padding: 10px;
-font-size: 16px;
-color: white !important;
-background-color: rgba(0,0,0,0.5) !important;
-} </style>
-""",
-unsafe_allow_html=True
-)
-
-
-# query = st.text_input("Enter your question:")
+query = st.text_input("Enter your question:")
 
 if st.button("Ask"):
     if not query.strip():
@@ -223,6 +177,7 @@ if st.button("Ask"):
                 st.error(f"API Error {e.response.status_code}: {e}")
             except Exception as e:
                 st.error(f"Error: {e}")
+
 
 
 
