@@ -139,13 +139,11 @@ def set_bg_from_local(image_file):
 # Usage
 set_bg_from_local("download.jpeg")
 
-# ----- API Key from Streamlit Secrets -----
 SERPER_API_KEY = st.secrets["SERPER_API_KEY"]
 if not SERPER_API_KEY:
     st.error("SERPER_API_KEY not found in Streamlit Secrets!")
     st.stop()
 
-# ----- Google Search Function -----
 async def google_search(query: str):
     url = "https://google.serper.dev/search"
     payload = {"q": query}
@@ -158,11 +156,8 @@ async def google_search(query: str):
         response.raise_for_status()
         return response.json()
 
-# ----- Streamlit UI -----
 st.markdown("<h1 style='color:white;text-align:center'>🤖 G-ChatBot</h1>", unsafe_allow_html=True)
 st.markdown("<p style='color:white;text-align:center'>Ask any question and get AI-powered search results instantly!</p>", unsafe_allow_html=True)
-
-
 
 st.markdown("""
 <style>
@@ -196,6 +191,7 @@ if st.button("Ask"):
                 st.error(f"API Error {e.response.status_code}: {e}")
             except Exception as e:
                 st.error(f"Error: {e}")
+
 
 
 
