@@ -163,6 +163,7 @@ st.markdown("<h1 style='color:white;text-align:center'>🤖 G-ChatBot</h1>", uns
 st.markdown("<p style='color:white;text-align:center'>Ask any question and get AI-powered search results instantly!</p>", unsafe_allow_html=True)
 
 
+
 st.markdown("""
 <style>
 /* Targets the input element within the stTextInput container */
@@ -180,7 +181,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-query = st.text_input("Input")
+query = st.text_input("Black and White Input")
 
 if st.button("Ask"):
     if not query.strip():
@@ -195,6 +196,7 @@ if st.button("Ask"):
                 st.error(f"API Error {e.response.status_code}: {e}")
             except Exception as e:
                 st.error(f"Error: {e}")
+
 
 
 
