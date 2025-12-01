@@ -139,8 +139,8 @@ async def google_search(query: str):
         return response.json()
 
 # ----- Streamlit UI -----
-st.markdown("<h1 style='color:white;text-align:center'>🤖 G-ChatBot</h1>", unsafe_allow_html=True)
-st.markdown("<p style='color:white;text-align:center'>Ask any question and get AI-powered search results instantly!</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='color:black;text-align:center'>🤖 G-ChatBot</h1>", unsafe_allow_html=True)
+st.markdown("<p style='color:black;text-align:center'>Ask any question and get AI-powered search results instantly!</p>", unsafe_allow_html=True)
 
 query = st.text_input("Enter your question:")
 
@@ -157,5 +157,6 @@ if st.button("Ask"):
                 st.error(f"API Error {e.response.status_code}: {e}")
             except Exception as e:
                 st.error(f"Error: {e}")
+
 
 
