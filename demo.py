@@ -181,7 +181,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-query = st.text_input("Black and White Input")
+query = st.text_input("Type Your Question here")
 
 if st.button("Ask"):
     if not query.strip():
@@ -196,6 +196,7 @@ if st.button("Ask"):
                 st.error(f"API Error {e.response.status_code}: {e}")
             except Exception as e:
                 st.error(f"Error: {e}")
+
 
 
 
