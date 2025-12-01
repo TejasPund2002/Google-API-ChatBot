@@ -2,6 +2,10 @@ import httpx
 import streamlit as st
 
 # ----- API Key from Streamlit Secrets -----
+st.set_page_config(
+    page_title="G-ChatBot",
+    layout="wide"
+)
 
 SERPER_API_KEY = st.secrets["SERPER_API_KEY"]
 if not SERPER_API_KEY:
@@ -44,3 +48,4 @@ if st.button("Ask"):
     st.error(f"API Error {e.response.status_code}: {e}")
  except Exception as e:
     st.error(f"Error: {e}")
+
