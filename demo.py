@@ -1,55 +1,47 @@
-import os
 import httpx
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+import streamlit as st
 
-SERPER_API_KEY = "0b3e7c0255d581c328c0753267b2ccb4a2682fde"
+# ----- API Key from Streamlit Secrets -----
 
+SERPER_API_KEY = st.secrets["SERPER_API_KEY"]
 if not SERPER_API_KEY:
- raise RuntimeError("SERPER_API_KEY environment variable is not set!")
+st.error("SERPER_API_KEY not found in Streamlit Secrets!")
+st.stop()
 
-app = FastAPI(title="Google Search ChatBot")
-
-class ChatRequest(BaseModel):
- question: str
+# ----- Google Search Function -----
 
 async def google_search(query: str):
-    url = "https://google.serper.dev/search"
-    print("Request URL:", url) 
-    payload = {"q": query}
-    headers = {
-        "X-API-KEY": str(SERPER_API_KEY),
-        "Content-Type": "application/json"
-    }
+url = "[https://google.serper.dev/search](https://google.serper.dev/search)"
+payload = {"q": query}
+headers = {
+"X-API-KEY": str(SERPER_API_KEY),
+"Content-Type": "application/json"
+}
 
-    async with httpx.AsyncClient() as client:
-        response = await client.post(url, json=payload, headers=headers)
-        response.raise_for_status()
-        return response.json()
+```
+async with httpx.AsyncClient() as client:
+    response = await client.post(url, json=payload, headers=headers)
+    response.raise_for_status()
+    return response.json()
+```
 
+# ----- Streamlit App -----
 
-  
-# ----- Chat Endpoint -----
+st.title("Google Search ChatBot (Serper API)")
 
-@app.post("/chat")
-async def chat(req: ChatRequest):
- try:
-  data = await google_search(req.question)
- except httpx.HTTPStatusError as e:
-  raise HTTPException(status_code=e.response.status_code, detail=str(e))
+query = st.text_input("Enter your question:")
 
-
-# Extract best answer
- answer = data.get("organic", [{}])[0].get("snippet", "No result found.")
-
- return {
-      "question": req.question,
-      "answer": answer,
-      "source": "Google Search (Serper API)"
-      }
-
-# ----- Run Instructions -----
-
-# uvicorn main:app --reload
-
-# POST request JSON body: {"question": "What is Artificial Intelligence?"}
+if st.button("Ask"):
+if not query.strip():
+st.warning("Please enter a question!")
+else:
+import asyncio
+try:
+data = asyncio.run(google_search(query))
+answer = data.get("organic", [{}])[0].get("snippet", "No result found.")
+st.markdown(f"**Answer:** {answer}")
+st.info("Source: Google Search (Serper API)")
+except httpx.HTTPStatusError as e:
+st.error(f"API Error {e.response.status_code}: {e}")
+except Exception as e:
+st.error(f"Error: {e}")
