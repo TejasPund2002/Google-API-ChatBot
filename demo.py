@@ -15,7 +15,7 @@ if not SERPER_API_KEY:
 # ----- Google Search Function -----
 
 async def google_search(query: str):
- url = "[https://google.serper.dev/search](https://google.serper.dev/search)"
+ url = "https://google.serper.dev/search"
  payload = {"q": query}
  headers = {
  "X-API-KEY": str(SERPER_API_KEY),
@@ -48,4 +48,5 @@ if st.button("Ask"):
     st.error(f"API Error {e.response.status_code}: {e}")
  except Exception as e:
     st.error(f"Error: {e}")
+
 
