@@ -137,7 +137,7 @@ def set_bg_from_local(image_file):
     )
 
 # Usage
-set_bg_from_local("bg.jpg")
+set_bg_from_local("download.jpeg")
 
 # ----- API Key from Streamlit Secrets -----
 SERPER_API_KEY = st.secrets["SERPER_API_KEY"]
@@ -177,6 +177,7 @@ if st.button("Ask"):
                 st.error(f"API Error {e.response.status_code}: {e}")
             except Exception as e:
                 st.error(f"Error: {e}")
+
 
 
 
