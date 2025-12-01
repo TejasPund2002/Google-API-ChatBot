@@ -67,7 +67,7 @@ st.markdown(
     <style>
     /* Background Image */
     .stApp {
-        background-image: url('https://images.unsplash.com/photo-1581092795363-1f0d02ff0fbb?auto=format&fit=crop&w=1470&q=80');
+        background-image: url('https://pin.it/3dTm6TqBb');
         background-size: cover;
         background-attachment: fixed;
         background-position: center;
@@ -141,7 +141,7 @@ def set_bg_from_url(url):
         )
 
 # Usage
-set_bg_from_url("https://images.unsplash.com/photo-1581092795363-1f0d02ff0fbb?auto=format&fit=crop&w=1470&q=80")
+set_bg_from_url("https://pin.it/3dTm6TqBb")
 
 # ----- API Key from Streamlit Secrets -----
 SERPER_API_KEY = st.secrets["SERPER_API_KEY"]
@@ -181,6 +181,7 @@ if st.button("Ask"):
                 st.error(f"API Error {e.response.status_code}: {e}")
             except Exception as e:
                 st.error(f"Error: {e}")
+
 
 
 
