@@ -165,15 +165,22 @@ st.markdown("<p style='color:white;text-align:center'>Ask any question and get A
 
 st.markdown("""
 <style>
-.stTextInput input[aria-label="Colored Input"] {
-    background-color: #0066cc; /* Blue background */
-    color: #33ff33;            /* Green text */
+/* Targets the input element within the stTextInput container */
+.stTextInput input[aria-label="Black and White Input"] {
+    background-color: #000000; /* Black background */
+    color: #FFFFFF;            /* White text color */
+    border: 1px solid #FFFFFF; /* Optional: adds a white border */
+    font-size: 16px;           /* Optional: change font size */
+}
+
+/* Optional: change the label color to white for better visibility on a dark app background */
+.stMarkdown p {
+    color: #FFFFFF;
 }
 </style>
 """, unsafe_allow_html=True)
 
-
-query = st.text_input("Colored Input")
+query = st.text_input("Input")
 
 if st.button("Ask"):
     if not query.strip():
@@ -188,6 +195,7 @@ if st.button("Ask"):
                 st.error(f"API Error {e.response.status_code}: {e}")
             except Exception as e:
                 st.error(f"Error: {e}")
+
 
 
 
