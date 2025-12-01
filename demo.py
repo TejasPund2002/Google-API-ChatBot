@@ -119,6 +119,30 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+import base64
+
+def set_bg_from_url(url):
+    import requests
+    response = requests.get(url)
+    if response.status_code == 200:
+        b64 = base64.b64encode(response.content).decode()
+        st.markdown(
+            f"""
+            <style>
+            .stApp {{
+                background-image: url("data:image/png;base64,{b64}");
+                background-size: cover;
+                background-attachment: fixed;
+                background-position: center;
+            }}
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
+# Usage
+set_bg_from_url("https://images.unsplash.com/photo-1581092795363-1f0d02ff0fbb?auto=format&fit=crop&w=1470&q=80")
+
 # ----- API Key from Streamlit Secrets -----
 SERPER_API_KEY = st.secrets["SERPER_API_KEY"]
 if not SERPER_API_KEY:
@@ -157,6 +181,7 @@ if st.button("Ask"):
                 st.error(f"API Error {e.response.status_code}: {e}")
             except Exception as e:
                 st.error(f"Error: {e}")
+
 
 
 
