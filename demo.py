@@ -162,7 +162,18 @@ async def google_search(query: str):
 st.markdown("<h1 style='color:white;text-align:center'>🤖 G-ChatBot</h1>", unsafe_allow_html=True)
 st.markdown("<p style='color:white;text-align:center'>Ask any question and get AI-powered search results instantly!</p>", unsafe_allow_html=True)
 
-query = st.text_input("Enter your question:")
+
+st.markdown("""
+<style>
+.stTextInput input[aria-label="Colored Input"] {
+    background-color: #0066cc; /* Blue background */
+    color: #33ff33;            /* Green text */
+}
+</style>
+""", unsafe_allow_html=True)
+
+
+query = st.text_input("Colored Input")
 
 if st.button("Ask"):
     if not query.strip():
@@ -177,6 +188,7 @@ if st.button("Ask"):
                 st.error(f"API Error {e.response.status_code}: {e}")
             except Exception as e:
                 st.error(f"Error: {e}")
+
 
 
 
